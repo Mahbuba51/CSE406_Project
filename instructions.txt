@@ -1,0 +1,6 @@
+This task involes HTTP / TCP Session Hijacking attack.
+AI is allowed for this task.
+
+Note: You MUST program your OWN attack tool. You MUST NOT use any tool avail-
+able on the Internet. It will be mostly C/C++/Python code. You must craft your own
+frame / packet / segment using your own code
