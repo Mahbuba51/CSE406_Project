@@ -1,20 +1,16 @@
 import os
 import socket
-from pathlib import Path
 from .common import log
 from .config import SERVER_IP, PORT
-from .network import setup
 from .protocol import verify_line
 
 
 def main():
-    setup("server")
     protected = os.environ.get("SCENARIO") == "protected"
     with socket.socket() as listener:
         listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         listener.bind((SERVER_IP, PORT))
         listener.listen(5)
-        Path("/tmp/server-ready").touch()
         log("server", "listening", protected=protected)
         while True:
             conn, peer = listener.accept()

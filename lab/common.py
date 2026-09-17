@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def evidence_dir():
-    path = Path(os.environ.get("EVIDENCE_DIR", "/evidence")) / os.environ.get("SCENARIO", "attack")
+    path = Path(os.environ.get("EVIDENCE_DIR", "./evidence")) / os.environ.get("SCENARIO", "attack")
     path.mkdir(parents=True, exist_ok=True)
     return path
 

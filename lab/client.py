@@ -3,12 +3,10 @@ import socket
 import time
 from .common import log
 from .config import CLIENT_IP, SERVER_IP, PORT
-from .network import setup
 from .protocol import authenticated_line
 
 
 def main():
-    setup("client")
     protected = os.environ.get("SCENARIO") == "protected"
     with socket.socket() as conn:
         conn.bind((CLIENT_IP, 0))

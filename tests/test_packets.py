@@ -6,7 +6,7 @@ from lab.packets import checksum, craft_packet, parse_frame, timestamps
 
 class PacketTests(unittest.TestCase):
     def packet(self, **kw):
-        args = dict(src="10.77.1.10", dst="10.77.2.30", sport=49152,
+        args = dict(src="10.0.0.10", dst="10.0.0.30", sport=49152,
                     dport=8080, seq=0xfffffff9, ack=12345, window=4096, payload=b"ADMIN_WIPE\n")
         args.update(kw)
         return craft_packet(**args)

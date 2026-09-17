@@ -4,15 +4,14 @@ import signal
 import socket
 import struct
 import time
-from pathlib import Path
 from .common import evidence_dir, log
-from .config import CLIENT_IP, SERVER_IP, ATTACKER_SERVER_IP, PORT, PAYLOAD
+from .config import CLIENT_IP, SERVER_IP, ATTACKER_IP, PORT, PAYLOAD
 from .network import interface_for
 from .packets import parse_frame, craft_packet, timestamps
 
 
 def main():
-    interface = interface_for(ATTACKER_SERVER_IP)
+    interface = interface_for(ATTACKER_IP)
     active = os.environ.get("SCENARIO", "attack") != "baseline"
     running = True
 
@@ -33,7 +32,6 @@ def main():
         pcap.write(struct.pack("<IHHIIII", 0xa1b2c3d4, 2, 4, 0, 0, 65535, 1))
         pcap.flush()
         log("attacker", "ready", interface=interface, active=active)
-        Path("/tmp/attacker-ready").touch()
         while running:
             try:
                 frame = capture.recv(65535)
